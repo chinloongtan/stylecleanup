@@ -19,7 +19,10 @@ const cmds = ['check', 'fix', 'fix-force']
 
 if (process.argv.length === 2) {
   cmd = 'check'
-  files = ['./**/*.js']
+  files = [
+    './**/*.js',
+    './**/*.tsx'
+  ]
 }
 
 if (!cmd || !files.length || cmd === 'help' || cmds.indexOf(cmd) === -1) {
