@@ -52,7 +52,7 @@ const showSheet = ({warnings, missing, unused}) => {
 }
 
 const processFile = (file, cmd) => {
-  const {sheets, lines} = analyzeFile(file)
+  const {sheets, lines} = analyzeFile(file, cmd)
 
   if (!sheets.length) {
     return {removed: 0, skipped: []}

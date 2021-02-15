@@ -15,14 +15,19 @@ function resolveHome(filepath) {
 
 let [_, __, cmd, ...files] = process.argv
 
-const cmds = ['check', 'fix', 'fix-force']
+const cmds = ['check', 'fix', 'fix-force', 'fix-ts']
 
 if (process.argv.length === 2) {
   cmd = 'check'
-  files = [
-    './**/*.js',
-    './**/*.tsx'
-  ]
+  if (cmd === 'fix-ts') {
+    files = [
+      './**/*.tsx'
+    ]
+  } else {
+    files = [
+      './**/*.js'
+    ]
+  }
 }
 
 if (!cmd || !files.length || cmd === 'help' || cmds.indexOf(cmd) === -1) {

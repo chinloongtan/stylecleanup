@@ -29,11 +29,13 @@ const getName = idOrLiteral => {
 
 const locLines = (lines, loc) => lines.slice(loc.start.line - 1, loc.end.line).join('\n')
 
-module.exports = (file) => {
+module.exports = (file, cmd) => {
   const text = fs.readFileSync(file, 'utf8')
   const ast = parser.parse(text, {
     sourceType: 'module',
-    plugins: ['jsx', 'objectRestSpread', 'classProperties', 'dynamicImport', 'optionalChaining', 'exportDefaultFrom', 'typescript'],
+    plugins: cmd === 'fix-ts'
+      ? ['jsx', 'objectRestSpread', 'classProperties', 'dynamicImport', 'optionalChaining', 'exportDefaultFrom', 'typescript']
+      : ['jsx', 'objectRestSpread', 'classProperties', 'dynamicImport', 'optionalChaining', 'exportDefaultFrom']
   })
   const lines = text.split('\n')
 
